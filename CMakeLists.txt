@@ -1,38 +1,40 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.14)
 
-project(PICOJPEG)
+include(toolchain.cmake)
 
-# Set C standard
-set(CMAKE_C_STANDARD 99)
-set(CMAKE_C_STANDARD_REQUIRED True)
+project(picojpeg)
 
-# Add source files
-set(SOURCES
-    src/support/beebsc.c
-    src/support/board.c
-    src/support/dummy-libm.c
-    src/support/main.c
-    src/support/support.h
-    src/libpicojpeg.c
-    src/picojpeg_test.c
-    src/picojpeg.h
+add_executable(picojpeg.elf)
+
+target_sources(picojpeg.elf
+    PRIVATE
+    	start.S
+        main.c
+        picojpeg_test.c
+        libpicojpeg.c
 )
 
-# Create executable
-add_executable(picojpeg ${SOURCES})
-
-# Include directories
-target_include_directories(picojpeg PRIVATE 
-    ${CMAKE_CURRENT_SOURCE_DIR}/src
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/support
+target_include_directories(picojpeg.elf
+    PRIVATE
+    PUBLIC
 )
 
-# Set compiler flags
-if(MSVC)
-    target_compile_options(picojpeg PRIVATE /W4)
-else()
-    target_compile_options(picojpeg PRIVATE -Wall -Wextra -pedantic)
-endif()
+target_link_libraries(picojpeg.elf
+    PRIVATE
+    	-T "${CMAKE_CURRENT_SOURCE_DIR}/scratchpad.lds" -nostartfiles
+        "${ExtraArchiveLibraries}"
+        -Xlinker --no-warn-rwx-segments
+        -Wl,--start-group -lc -lstdc++ -lgcc -lm -Wl,--end-group
+)
 
-# If you need to link against any libraries, uncomment and modify the following line
-# target_link_libraries(picojpeg PRIVATE some_library)
+# Create objdump from ELF.
+set(objdump picojpeg.elf.objdump)
+add_custom_command(
+    OUTPUT "${objdump}"
+    DEPENDS picojpeg.elf
+    COMMAND "${ToolchainObjdump}" "${ToolchainObjdumpFlags}" picojpeg.elf >
+            "${objdump}"
+    COMMENT "Creating ${objdump}."
+    VERBATIM
+)
+add_custom_target(create-objdump ALL DEPENDS "${objdump}")
