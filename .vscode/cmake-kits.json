@@ -2,8 +2,8 @@
   {
     "name": "RISC-V Nios V/m Toolchain",
     "compilers": {
-      "C": "${config:ashling.installationPath}/toolchain/riscv64-unknown-elf/bin/riscv64-unknown-elf-gcc",
-      "CXX": "${config:ashling.installationPath}/toolchain/riscv64-unknown-elf/bin/riscv64-unknown-elf-g++",
+      "C": "${command:ashling.installationPath}/toolchain/riscv64-unknown-elf/bin/riscv64-unknown-elf-gcc",
+      "CXX": "${command:ashling.installationPath}/toolchain/riscv64-unknown-elf/bin/riscv64-unknown-elf-g++",
       "ASM": "${command:ashling.installationPath}/toolchain/riscv64-unknown-elf/bin/riscv64-unknown-elf-gcc",
       
     },
