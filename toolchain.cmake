@@ -3,12 +3,6 @@ set(CMAKE_SYSTEM_PROCESSOR "Nios V/m")
 set(CMAKE_CROSSCOMPILING True)
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
-set(CMAKE_AR riscv32-unknown-elf-ar)
-set(CMAKE_ASM_COMPILER riscv32-unknown-elf-gcc)
-set(CMAKE_C_COMPILER riscv32-unknown-elf-gcc)
-set(CMAKE_CXX_COMPILER riscv32-unknown-elf-g++)
-
-set(ToolchainObjdump riscv32-unknown-elf-objdump CACHE STRING "Objdump executable." FORCE)
 set(ToolchainObjdumpFlags -Sdtx CACHE STRING "Objdump flags." FORCE)
 
 if(NOT CMAKE_BUILD_TYPE)

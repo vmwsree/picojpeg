@@ -1,0 +1,29 @@
+[
+  {
+    "name": "RISC-V Nios V/m Toolchain",
+    "compilers": {
+      "C": "${command:ashling.installationPath}/toolchain/riscv64-unknown-elf/bin/riscv64-unknown-elf-gcc",
+      "CXX": "${command:ashling.installationPath}/toolchain/riscv64-unknown-elf/bin/riscv64-unknown-elf-g++",
+      "ASM": "${command:ashling.installationPath}/toolchain/riscv64-unknown-elf/bin/riscv64-unknown-elf-gcc",
+      
+    },
+    "cmakeSettings": {
+      "CMAKE_SYSTEM_NAME": "Generic",
+      "CMAKE_SYSTEM_PROCESSOR": "Nios V/m",
+      "CMAKE_CROSSCOMPILING": "TRUE",
+      "CMAKE_TRY_COMPILE_TARGET_TYPE": "STATIC_LIBRARY",
+      "CMAKE_AR": "${command:ashling.installationPath}/toolchain/riscv64-unknown-elf/bin/riscv64-unknown-elf-ar",
+      "ToolchainObjdump": "${command:ashling.installationPath}/toolchain/riscv64-unknown-elf/bin/riscv64-unknown-elf-objdump",
+      "ToolchainObjdumpFlags": "-Sdtx",
+      "CMAKE_C_FLAGS_DEBUG": "-g",
+      "CMAKE_CXX_FLAGS_DEBUG": "-g",
+      "CMAKE_C_FLAGS_RELEASE": "-O2",
+      "CMAKE_CXX_FLAGS_RELEASE": "-O2"
+    },
+  
+    "environmentVariables": {
+      "PATH": "${env:PATH}:${config:ashling.installationPath}/toolchain/riscv64-unknown-elf/bin"
+    }
+  }
+    
+  ]
