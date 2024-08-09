@@ -2,8 +2,8 @@
   {
     "name": "RISC-V Nios V/m Toolchain",
     "compilers": {
-      "C": "${command:ashling.installationPath}/toolchain/riscv64-unknown-elf/bin/riscv64-unknown-elf-gcc",
-      "CXX": "${command:ashling.installationPath}/toolchain/riscv64-unknown-elf/bin/riscv64-unknown-elf-g++",
+      "C": "${config:ashling.installationPath}/toolchain/riscv64-unknown-elf/bin/riscv64-unknown-elf-gcc",
+      "CXX": "${config:ashling.installationPath}/toolchain/riscv64-unknown-elf/bin/riscv64-unknown-elf-g++",
       "ASM": "${command:ashling.installationPath}/toolchain/riscv64-unknown-elf/bin/riscv64-unknown-elf-gcc",
       
     },
@@ -20,9 +20,12 @@
       "CMAKE_C_FLAGS_RELEASE": "-O2",
       "CMAKE_CXX_FLAGS_RELEASE": "-O2"
     },
+    "preferredGenerator": {
+      "name": "Unix Makefiles"
+    },
   
     "environmentVariables": {
-      "PATH": "${env:PATH}:${config:ashling.installationPath}/toolchain/riscv64-unknown-elf/bin"
+      "PATH": "${env:PATH}:${command:ashling.installationPath}/toolchain/riscv64-unknown-elf/bin"
     }
   }
     
