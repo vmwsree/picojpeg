@@ -1,10 +1,11 @@
 {
-  "name": "Quartus Codespace",
-  "image": "intel/quartuspro-v24.1",
+  "name": "Quartus RiscFree Dev",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
   "customizations": {
     "vscode": {
       "extensions": ["Ashling.vscode-altera-fpgas"]
     }
-  },
-  "postStartCommand": "export PATH=$PATH:/opt/intelFPGA_pro/24.1/quartus/bin"
+  }
 }
