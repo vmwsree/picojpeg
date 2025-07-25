@@ -1,0 +1,10 @@
+{
+  "name": "Quartus Codespace",
+  "image": "intel/quartuspro-v24.1",
+  "customizations": {
+    "vscode": {
+      "extensions": ["Ashling.vscode-altera-fpgas"]
+    }
+  },
+  "postStartCommand": "export PATH=$PATH:/opt/intelFPGA_pro/24.1/quartus/bin"
+}
